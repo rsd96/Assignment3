@@ -22,6 +22,18 @@ PlayGame::PlayGame() {
 	shotSound.setBuffer(shotBuffer);
 	jetSound.setBuffer(jetMoveBuffer);
 	explosionSound.setBuffer(explosionBuffer);
+
+	font.loadFromFile("space age.ttf");
+
+	p1Controls.setFont(font);
+	p1Controls.setFillColor(sf::Color::White);
+	p1Controls.setString(" Player 1 \n\n Controls: \n Move Forward - Up arrow \n Rotate right - Right arrow \n Rotate Left - Left arrow \n Shoot - /");
+	p1Controls.setScale(0.75f, 0.75f);
+
+	p2Controls.setFont(font);
+	p2Controls.setFillColor(sf::Color::White);
+	p2Controls.setString(" Player 2 \n\n Controls: \n Move Forward - W \n Rotate right - D \n Rotate Left - A \n Shoot - Space");
+	p2Controls.setScale(0.75f, 0.75f);
 }
 
 int PlayGame::Run(sf::RenderWindow & window) {
@@ -29,6 +41,11 @@ int PlayGame::Run(sf::RenderWindow & window) {
 
 	Ship p1("Player 1", 100, window.getSize().y / 2, "textures/Ship_Locust_Stalled.png");
 	Ship p2("Player 2", window.getSize().x - 100, window.getSize().y / 2, "textures/Ship_Locust_Stalled.png");
+
+	p1Controls.setPosition(20, 100);
+	p2Controls.setPosition(window.getSize().x - p2Controls.getGlobalBounds().width, 100);
+
+	bool dispControls = true; 
 
 	/////////////////////////////////////////////////////
 	//	Game Loop 
@@ -81,6 +98,7 @@ int PlayGame::Run(sf::RenderWindow & window) {
 
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
 
+				dispControls = false; 
 				p1.flying = true;
 				p1.forward(window);
 				if (jetSound.getStatus() != Sound::Playing)
@@ -113,6 +131,7 @@ int PlayGame::Run(sf::RenderWindow & window) {
 				p2.rotate(0.3f);
 
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+				dispControls = false; 
 
 				p2.flying = true;
 				p2.forward(window);
@@ -192,6 +211,10 @@ int PlayGame::Run(sf::RenderWindow & window) {
 			background.drawBG(window);
 			p1.drawShip(window);
 			p2.drawShip(window);
+			if (dispControls) {
+				window.draw(p1Controls);
+				window.draw(p2Controls);
+			}
 
 			for (Shot &shot : shots)
 				window.draw(shot.getBullet());

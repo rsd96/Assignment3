@@ -66,8 +66,10 @@ int Tutorial::Run(sf::RenderWindow & window) {
 	tutorialPrompt.setString(tutorialMessages[0]);
 	tutorialPrompt.setPosition(window.getSize().x / 2 - tutorialPrompt.getGlobalBounds().width / 2, 50);
 
+	// To make random actions even more random
 	int randomizer = 1; 
 
+	// Initial key asked for the tutorial
 	sf::Keyboard::Key key = sf::Keyboard::D;
 
 	while (window.isOpen()) {

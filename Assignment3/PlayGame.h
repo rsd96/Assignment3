@@ -28,6 +28,9 @@ private:
 	sf::Sound jetSound;
 	sf::Sound explosionSound;
 	EndGame endGame;
+	sf::Font font; 
+	sf::Text p1Controls; 
+	sf::Text p2Controls; 
 	
 };
 
