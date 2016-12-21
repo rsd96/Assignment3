@@ -36,7 +36,7 @@ private:
 	int m_health;
 	sf::RectangleShape m_healthBar;
 	bool canMove = true;
-	bool diff = false;
+	bool status = false; 
 	std::string m_name;
 
 };

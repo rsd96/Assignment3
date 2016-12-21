@@ -11,7 +11,7 @@ EndGame::EndGame() {
 	m_font.loadFromFile("space age.ttf");
 
 	m_endText.setFont(m_font);
-	m_endText.setFillColor(sf::Color::Red);
+	m_endText.setFillColor(sf::Color::Green);
 	m_endText.setStyle(sf::Text::Style::Bold);
 	m_endText.setOutlineThickness(1);
 	m_endText.setOutlineColor(sf::Color::Black);

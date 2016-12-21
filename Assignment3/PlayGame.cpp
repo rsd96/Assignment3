@@ -27,8 +27,8 @@ PlayGame::PlayGame() {
 int PlayGame::Run(sf::RenderWindow & window) {
 	
 
-	Ship p1("Player 1", window.getSize().x / 3, window.getSize().y / 3, "textures/Ship_Locust_Stalled.png");
-	Ship p2("Player 2", window.getSize().x / 2, window.getSize().y / 2, "textures/Ship_Locust_Stalled.png");
+	Ship p1("Player 1", 100, window.getSize().y / 2, "textures/Ship_Locust_Stalled.png");
+	Ship p2("Player 2", window.getSize().x - 100, window.getSize().y / 2, "textures/Ship_Locust_Stalled.png");
 
 	/////////////////////////////////////////////////////
 	//	Game Loop 

@@ -46,13 +46,12 @@ void Ship::forward(sf::RenderWindow& window)
 	double y = sin(rad) * 0.25;
 
 	// Checking if the ship is gonna go out of the window
-	if (m_sprite.getPosition().x + x + m_sprite.getGlobalBounds().width / 2 < window.getSize().x
-		&& m_sprite.getPosition().y + y + m_sprite.getGlobalBounds().height / 2 < window.getSize().y
-		&& m_sprite.getPosition().x + x - m_sprite.getGlobalBounds().width / 2 > 0
-		&& m_sprite.getPosition().y + y - m_sprite.getGlobalBounds().height / 2 > 0) {
+	if (   m_sprite.getPosition().x + x + m_sprite.getGlobalBounds().width  / 2 <= window.getSize().x
+		&& m_sprite.getPosition().y + y + m_sprite.getGlobalBounds().height / 2 <= window.getSize().y
+		&& m_sprite.getPosition().x + x - m_sprite.getGlobalBounds().width  / 2 >= 0
+		&& m_sprite.getPosition().y + y - m_sprite.getGlobalBounds().height / 2 >= 0) {
 
 		m_sprite.move(x, y);
-
 		m_healthBar.setPosition(this->getSprite().getPosition().x - m_healthBar.getSize().x / 2, this->getSprite().getPosition().y + this->getSprite().getGlobalBounds().height / 2);
 
 	}
@@ -81,12 +80,12 @@ Shot Ship::shoot()
 void Ship::drawShip(sf::RenderWindow & window)
 {
 
-	if ((flying) && (flying != diff)) {
+	if ((flying) && (status != flying)) {
 		setSprite("textures/Ship_Locust_Fly.png");
-		diff = flying;
-	} else if ((!flying) && (flying != diff)) {
+		status = flying;
+	} else if ((!flying) && (flying != status)) {
 		setSprite("textures/Ship_Locust_Stalled.png");
-		diff = flying;
+		status = flying;
 	}
 	window.draw(this->getSprite());
 	window.draw(m_healthBar);
